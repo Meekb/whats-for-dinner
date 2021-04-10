@@ -8,6 +8,7 @@ var mainDishBtn = document.getElementById('main-dish');
 var sideDishBtn = document.getElementById('side');
 var clearBtn = document.getElementById('clear');
 var radioBtns = document.querySelectorAll('.radio');
+var favBtn = document.getElementById('favorite');
 
     //page areas
 var cookpot = document.getElementById('cookpot');
@@ -19,9 +20,11 @@ var rightSide = document.getElementById('right');
 // EVENT LISTENERS
 window.addEventListener('load', changeCookpotVisibility)
 letsCookBtn.addEventListener('click', generateRandomRecipe);
-rightSide.addEventListener('click', resetLRSides);
+rightSide.addEventListener('click', saveOrClear);
 leftSide.addEventListener('change', disableUnchecked);
 
+// Global VAR
+var newRecipe;
 
 // EVENT HANDLERS
 function getRandomIndex(array) {
@@ -29,82 +32,77 @@ function getRandomIndex(array) {
 };
 
 function generateRandomRecipe() {
-  for (i = 0; i < radioBtns.length; i++) {
-    if (radioBtns[i].checked && radioBtns[i].id === 'entire-meal') {
+  if (!checkSelectedRadios()) {
+    alert('Please select a recipe type option!');
+  } else if (checkSelectedRadios() === 'entire-meal') {
     entireMealInnerHTML();
-  } else if (radioBtns[i].checked && radioBtns[i].id === 'side') {
-    sideRecipeInnerHTML();
-  } else if (radioBtns[i].checked && radioBtns[i].id === 'main-dish') {
-    mainRecipeInnerHTML();
-  } else if (radioBtns[i].checked && radioBtns[i].id === 'dessert') {
-    dessertRecipeInnerHTML();
+  } else {
+    singleItemInnerHTML();
   }
- }
- disableLetsCookBtn();
+  disableLetsCookBtn();
 }
 
 function entireMealInnerHTML() {
-    rightSide.innerHTML = '';
-    rightSide.innerHTML =
-      `
-      <div>
-        <br><br><p class="recipe-head" id="recipe">You should make:</p>
-        <p>${mains[getRandomIndex(mains)]} with a side of ${sides[getRandomIndex(sides)]} and ${desserts[getRandomIndex(desserts)]}!</p>
-        <br><br><br><br><br><br><button type="button" name="clear" class="clear grow" id="clear">CLEAR</button>
-      </div>
-      `
+  var main = mains[getRandomIndex(mains)];
+  var side = sides[getRandomIndex(sides)];
+  var dessert = desserts[getRandomIndex(desserts)];
+  newRecipe = new Recipe({main: main, side: side, dessert: dessert});
+  console.log(newRecipe);
+  rightSide.innerHTML = '';
+  rightSide.innerHTML =
+    `
+    <div>
+      <br><br><p class="recipe-head" id="recipe">You should make:</p>
+      <p>${main} with a side of ${side} and ${dessert}!</p>
+      <br><br><br><br><button type="button" name="favorite" class="fav grow" id="favorite">FAVORITE</button>
+      <br><br><button type="button" name="clear" class="clear grow" id="clear">CLEAR</button>
+    </div>
+    `
 }
 
-function sideRecipeInnerHTML() {
+function singleItemInnerHTML() {
+  var item;
+  if (checkSelectedRadios() === 'side') {
+    item = sides[getRandomIndex(sides)];
+  } else if (checkSelectedRadios() === 'main-dish') {
+    item = mains[getRandomIndex(mains)];
+  } else {
+    item = desserts[getRandomIndex(desserts)];
+  }
   rightSide.innerHTML = '';
   rightSide.innerHTML =
   `
   <div>
-    <br><br><p class="recipe-head" id="recipe">You should make:</p>
-    <p>${sides[getRandomIndex(sides)]}!</p>
-    <br><br><br><br><br><br><br><br><button type="button" name="clear" class="clear grow" id="clear">CLEAR</button>
-  </div>
-  `
-}
-
-function mainRecipeInnerHTML() {
-  rightSide.innerHTML = '';
-  rightSide.innerHTML =
-  `
-  <div>
-    <br><br><p class="recipe-head" id="recipe">You should make:</p>
-    <p>${mains[getRandomIndex(mains)]}!</p>
-    <br><br><br><br><br><br><br><br><button type="button" name="clear" class="clear grow" id="clear">CLEAR</button>
-  </div>
-  `
-}
-
-function dessertRecipeInnerHTML() {
-  rightSide.innerHTML = '';
-  rightSide.innerHTML =
-  `
-  <div>
-    <br><br><p class="recipe-head" id="recipe">You should make:</p>
-    <p>${desserts[getRandomIndex(desserts)]}!</p>
-    <br><br><br><br><br><br><br><br><button type="button" name="clear" class="clear grow" id="clear">CLEAR</button>
+  <br><br><p class="recipe-head" id="recipe">You should make:</p>
+  <p>${item}!</p>
+  <br><br><br><br><br><br><br><br><button type="button" name="clear" class="clear grow" id="clear">CLEAR</button>
   </div>
   `
 }
 
 function changeCookpotVisibility() {
   rightSide.innerHTML =
-  `
-  <img src="assets/cookpot.svg" alt="Cookpot icon" class="cook-pot" id="cookpot" width="147.7" height="269.11">
-  `
+    `
+    <img src="assets/cookpot.svg" alt="Cookpot icon" class="cook-pot" id="cookpot" width="147.7" height="269.11">
+    `
 }
 
-function resetLRSides() {
+function saveOrClear() {
   if (event.target.id === 'clear') {
     rightSide.innerHTML = '';
     enableLetsCookBtn();
     changeRadioStatus();
     changeCookpotVisibility();
-   }
+  } else {
+    saveEntireMeal(newRecipe);
+  }
+ }
+
+function saveEntireMeal(newRecipe) {
+  if (!favorites.includes(newRecipe)) {
+    favorites.push(newRecipe);
+    console.log(favorites);
+  }
  }
 
 function changeRadioStatus() {
@@ -127,7 +125,7 @@ function disableUnchecked() {
 function checkSelectedRadios() {
   for (var i = 0; i < radioBtns.length; i++) {
     if (radioBtns[i].checked) {
-      return true;
+      return radioBtns[i].id;
     }
   }
 }

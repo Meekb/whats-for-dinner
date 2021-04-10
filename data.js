@@ -1,3 +1,5 @@
+var favorites = [];
+
 var sides = [
   'Miso Glazed Carrots',
   'Coleslaw',
