@@ -1,27 +1,25 @@
 // DOM VARIABLES
     //buttons
 var addRecipeBtn = document.getElementById('add-recipe');
+var clearBtn = document.getElementById('clear');
 var dessertBtn = document.getElementById('dessert');
 var entireMealBtn = document.getElementById('entire-meal');
+var favBtn = document.getElementById('favorite');
 var letsCookBtn = document.getElementById('lets-cook');
 var mainDishBtn = document.getElementById('main-dish');
-var sideDishBtn = document.getElementById('side');
-var clearBtn = document.getElementById('clear');
 var radioBtns = document.querySelectorAll('.radio');
-var favBtn = document.getElementById('favorite');
+var sideDishBtn = document.getElementById('side');
 
     //page areas
 var cookpot = document.getElementById('cookpot');
 var leftSide = document.getElementById('left');
 var rightSide = document.getElementById('right');
 
-
-
 // EVENT LISTENERS
 window.addEventListener('load', changeCookpotVisibility)
+leftSide.addEventListener('change', disableUnchecked);
 letsCookBtn.addEventListener('click', generateRandomRecipe);
 rightSide.addEventListener('click', saveOrClear);
-leftSide.addEventListener('change', disableUnchecked);
 
 // Global VAR
 var newRecipe;
@@ -33,7 +31,7 @@ function getRandomIndex(array) {
 
 function generateRandomRecipe() {
   if (!checkSelectedRadios()) {
-    alert('Please select a recipe type option!');
+    alert('TELL US WHAT YOU\'RE LOOKING FOR!');
   } else if (checkSelectedRadios() === 'entire-meal') {
     entireMealInnerHTML();
   } else {
@@ -47,8 +45,6 @@ function entireMealInnerHTML() {
   var side = sides[getRandomIndex(sides)];
   var dessert = desserts[getRandomIndex(desserts)];
   newRecipe = new Recipe({main: main, side: side, dessert: dessert});
-  console.log(newRecipe);
-  rightSide.innerHTML = '';
   rightSide.innerHTML =
     `
     <div>
@@ -69,7 +65,6 @@ function singleItemInnerHTML() {
   } else {
     item = desserts[getRandomIndex(desserts)];
   }
-  rightSide.innerHTML = '';
   rightSide.innerHTML =
   `
   <div>
@@ -101,7 +96,6 @@ function saveOrClear() {
 function saveEntireMeal(newRecipe) {
   if (!favorites.includes(newRecipe)) {
     favorites.push(newRecipe);
-    console.log(favorites);
   }
  }
 
