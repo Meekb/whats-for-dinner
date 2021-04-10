@@ -37,15 +37,25 @@
         </div>
         <button type="button" class="lets-cook grow" id="lets-cook" name="lets-cook">LET'S COOK!</button>
       </section>
-      <section class="right-side" id='right'>
+      <section class="right-side" id="right">
         <div>
           <p class="recipe hidden" id="recipe">recipe holder</p>
           <img src="assets/cookpot.svg" alt="Cookpot icon" class="cook-pot" id="cookpot" width="147.7" height="269.11">
        </div>
-        <!-- <button type="button" name="clear" class="clear hidden" id="clear">CLEAR</button> -->
+       <button type="button" name="favorite" class="fav grow hidden" id="favorite">FAVORITE</button>
+        <button type="button" name="clear" class="clear hidden" id="clear">CLEAR</button>
+      </section>
+      <section class="saved hidden" id="saved">
+        <div>
+          <p class="saved-card" id="savedCard">SAVED RECIPES</p>
+          <img src="assets/cookpot.svg" alt="Cookpot icon" class="cook-pot saved hidden" id="cookpot2" width="147.7" height="269.11">
+       </div>
+        <button type="button" name="home" class="home hidden" id="home">HOME</button>
       </section>
     </main>
   </body>
   <script type="text/javascript" src="data.js"></script>
   <script type="text/javascript" src="main.js"></script>
+  <script type="text/javascript" src="recipe.js"></script>
+
 </html>

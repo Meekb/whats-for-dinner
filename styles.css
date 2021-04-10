@@ -61,6 +61,16 @@ p {
   background-color: #0fb9b1;
 }
 
+.fav {
+  border-radius: 5px;
+  padding: 10px 10px;
+  margin-left: 12%;
+  font-size: 16px;
+  color: white;
+  background-color: #95a5a6;
+  position: absolute;
+}
+
 .clear {
   width: 75px;
   padding: 10px 10px;
@@ -123,6 +133,7 @@ p {
   padding-bottom: 8px;
   color: black;
   width: 250px;
+  box-sizing: border-box;
 }
 
 .radio {
@@ -139,6 +150,7 @@ p {
   justify-content: space-between;
   padding-left: 45px;
   padding-top: 35px;
+  box-sizing: border-box;
 }
 
 .right-side {
