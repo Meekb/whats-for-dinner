@@ -49,7 +49,7 @@ var desserts = [
   'Rum Jelly',
   'Tipsy Cake',
   'Whim Wham',
-  'Cigar',
+  'A Fat Cigar',
   'Macaroons',
   'Apple Puffs',
   'Queen Fritters',

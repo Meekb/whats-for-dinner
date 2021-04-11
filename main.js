@@ -1,5 +1,6 @@
 // DOM VARIABLES
     //buttons
+var buttons = document.querySelectorAll('button');
 var addRecipeBtn = document.getElementById('add-recipe');
 var clearBtn = document.getElementById('clear');
 var dessertBtn = document.getElementById('dessert');
@@ -9,17 +10,24 @@ var letsCookBtn = document.getElementById('lets-cook');
 var mainDishBtn = document.getElementById('main-dish');
 var radioBtns = document.querySelectorAll('.radio');
 var sideDishBtn = document.getElementById('side');
+var homeHolder = document.getElementById('home');
+var homeBtn = document.getElementById('homeBtn');
 
     //page areas
 var cookpot = document.getElementById('cookpot');
 var leftSide = document.getElementById('left');
+var mainArea = document.getElementById('main');
 var rightSide = document.getElementById('right');
+var savedArea = document.getElementById('saved');
+var savedCard = document.getElementById('card');
+var savedNav = document.getElementById('savedNav');
+var cardTitle = document.getElementById('title');
 
 // EVENT LISTENERS
 window.addEventListener('load', changeCookpotVisibility)
 leftSide.addEventListener('change', disableUnchecked);
 letsCookBtn.addEventListener('click', generateRandomRecipe);
-rightSide.addEventListener('click', saveOrClear);
+rightSide.addEventListener('click', saveClearOrView);
 
 // Global VAR
 var newRecipe;
@@ -38,9 +46,6 @@ function generateRandomRecipe() {
     singleItemInnerHTML();
   }
   disableLetsCookBtn();
-  console.log('mains', mains.length);
-  console.log('sides', sides.length);
-  console.log('desserts', desserts.length);
 }
 
 function entireMealInnerHTML() {
@@ -55,8 +60,8 @@ function entireMealInnerHTML() {
       <p>${main} with a side</p>
       <p>of ${side} and</p>
       <p>${dessert} for dessert!</p>
-      <br><br><button type="button" name="favorite" class="fav grow" id="favorite">FAVORITE</button>
-      <br><br><button type="button" name="clear" class="clear grow" id="clear">CLEAR</button>
+      <br><button type="button" name="favorite" class="fav grow" id="favorite">FAVORITE</button>
+      <br><br><span><button class="view-fav-button grow" id="viewFavs">VIEW FAVS</button></span><span><button type="button" name="clear" class="clear grow" id="clear">CLEAR</button></span>
     </div>
     `
 }
@@ -87,15 +92,45 @@ function changeCookpotVisibility() {
     `
 }
 
-function saveOrClear() {
-  if (event.target.id === 'clear') {
+function saveClearOrView() {
+  if (event.target.id === 'favorite') {
+    console.log('favorite button clicked')
+    saveEntireMeal(newRecipe);
+    console.log(favorites);
+  } else if (event.target.id === 'viewFavs') {
+    console.log('view favorites button clicked');
+    // revealSavedArea();
+    displaySavedRecipes();
+      // invoke populate saved recipe cards function
+  } else {
+    console.log('clear button clicked');
     rightSide.innerHTML = '';
     enableLetsCookBtn();
     changeRadioStatus();
     changeCookpotVisibility();
-  } else {
-    saveEntireMeal(newRecipe);
   }
+ }
+
+ function displaySavedRecipes() {
+   savedNav.classList.remove('hidden');
+   savedArea.classList.remove('hidden');
+   var recipeList = '';
+   savedArea.innerHTML = '';
+   for (var i = 0; i < favorites.length; i++) {
+     recipeList +=
+      `
+      <article class="saved hidden" id="saved">
+        <div class="recipe-card" id="card">
+          <p class="saved-card" id="title">SAVED RECIPE</p>
+          <p>${favorites[i].main}</p>
+          <p>with a side</p>
+          <p>of ${favorites[i].side} and</p>
+          <p>${favorites[i].dessert} for dessert!</p>
+        </div>
+      </article>
+      `
+   }
+   savedArea.innerHTML = recipeList;
  }
 
 function saveEntireMeal(newRecipe) {
