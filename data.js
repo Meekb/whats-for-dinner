@@ -28,7 +28,7 @@ var mains = [
   'Fresh Tongue With Spinach',
   'Cornish Pasties',
   'Larded Quail',
-  'New York East River Turtle'
+  'New York East River Turtle',
   'Lake Trout From Tahoe',
   'Roast Corned Pork',
   'Cherry-Stone Clams',
