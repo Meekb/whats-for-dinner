@@ -38,6 +38,9 @@ function generateRandomRecipe() {
     singleItemInnerHTML();
   }
   disableLetsCookBtn();
+  console.log('mains', mains.length);
+  console.log('sides', sides.length);
+  console.log('desserts', desserts.length);
 }
 
 function entireMealInnerHTML() {
@@ -49,8 +52,10 @@ function entireMealInnerHTML() {
     `
     <div>
       <br><br><p class="recipe-head" id="recipe">You should make:</p>
-      <p>${main} with a side of ${side} and ${dessert}!</p>
-      <br><br><br><br><button type="button" name="favorite" class="fav grow" id="favorite">FAVORITE</button>
+      <p>${main} with a side</p>
+      <p>of ${side} and</p>
+      <p>${dessert} for dessert!</p>
+      <br><br><button type="button" name="favorite" class="fav grow" id="favorite">FAVORITE</button>
       <br><br><button type="button" name="clear" class="clear grow" id="clear">CLEAR</button>
     </div>
     `
@@ -78,7 +83,7 @@ function singleItemInnerHTML() {
 function changeCookpotVisibility() {
   rightSide.innerHTML =
     `
-    <img src="assets/cookpot.svg" alt="Cookpot icon" class="cook-pot" id="cookpot" width="147.7" height="269.11">
+    <img src="assets/cookpot.svg" alt="Cookpot icon" class="cook-pot grow2" id="cookpot" width="147.7" height="269.11">
     `
 }
 
