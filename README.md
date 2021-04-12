@@ -1,4 +1,4 @@
-## Title: What's for Dinner (in the Colonies)?
+## Title: What's For Dinner?
 
 A [Front-End Project] by: [Beth Meeker] (https://github.com/Meekb)
 Project forked from [Turing School of Software & Design, GitHub](https://frontend.turing.io/projects/module-1/dinner.html)
@@ -15,20 +15,16 @@ Project forked from [Turing School of Software & Design, GitHub](https://fronten
 
 ## Overview
 
-What's for dinner? This has always been the ultimate question. This web application
-will help you determine an answer by providing random options of Colonial fare, and
-old American standards. So toss out that old recipe book and click "Let's Cook!" to
-see what unique culinary masterpiece you will tackle next.
+It's time to transport your family to a Gilded Age high society ball! This web application focuses on Nineteenth Century American cuisine. Whether you want an idea for a single menu item, or a recommendation for an entire high society meal, this application has got you covered. It's time to toss out that boring old recipe book and click "Let's Cook!" to see what unique culinary masterpiece may be your new social capital at the Society Ball.
 
 
 ## Functionality
 
-  - Matched comp provided
   - "Add Recipe" button displayed with limited opacity to signify inactive
   - Radio buttons de-activate when one is selected
   - If no radio buttons are selected, and the "Let's Cook!" button is clicked,
   an alert will be given to the user to "Tell us what you are looking for!"
-  - Once and option is selected and the "Let's Cook!" button is clicked, a randomly
+  - Once an option is selected and the "Let's Cook!" button is clicked, a randomly
   generated recipe will be displayed in place of the Cookpot icon on the right
   - If the "Entire Meal" option is selected, a randomly generated full meal option
   will be displayed in place of the Cookpot icon on the right
@@ -38,11 +34,18 @@ see what unique culinary masterpiece you will tackle next.
   - The "Clear" button will reactivate the "Let's Cook!" and radio buttons on the left
 
 
+## Future Improvements
+  - Redesign the application to replicate a menu from a real high society ball
+  - Add a 'Favorite' button to the Entire Meal option, allowing the user to store the meal in localStorage so the data persists upon revisit
+  - Add a 'Home' button allowing the user to return to the main page area
+  - Fully responsive for mobile usage
+
+
 ## Setup / Deployed Page
   - Clone this repository to your local machine
   - `cd` into the project
   - Type `open index.html` to view the project in your browser
-  - Visit the deployed project: [What's for Dinner (in the Colonies)?](https://meekb.github.io/whats-for-dinner/)
+  - OR you can visit my deployed project: [What's for Dinner (in the Colonies)?](https://meekb.github.io/whats-for-dinner/)
 
 
 ## Technologies
