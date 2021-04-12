@@ -64,16 +64,28 @@ p {
 .fav {
   border-radius: 5px;
   padding: 10px 10px;
-  margin-left: 12%;
+  margin-left: 5.8%;
   font-size: 16px;
   color: white;
   background-color: #95a5a6;
   position: absolute;
   max-width: 250px;
+  border: solid black 1px;
+}
+
+.view-fav-button {
+  border-radius: 5px;
+  padding: 10px 9px;
+  font-size: 16px;
+  color: white;
+  background-color: #95a5a6;
+  position: absolute;
+  width: 105px;
+  border: solid black 1px;
 }
 
 .clear {
-  width: 85px;
+  width: 82px;
   padding: 10px 10px;
   border-radius: 5px;
   font-size: 16px;
@@ -82,6 +94,7 @@ p {
   position: absolute;
   margin-left: 24%;
   max-width: 150px;
+  border: solid black 1px;
 }
 
 .grow2 {

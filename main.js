@@ -1,5 +1,6 @@
 // DOM VARIABLES
     //buttons
+var buttons = document.querySelectorAll('button');
 var addRecipeBtn = document.getElementById('add-recipe');
 var clearBtn = document.getElementById('clear');
 var dessertBtn = document.getElementById('dessert');
@@ -9,17 +10,20 @@ var letsCookBtn = document.getElementById('lets-cook');
 var mainDishBtn = document.getElementById('main-dish');
 var radioBtns = document.querySelectorAll('.radio');
 var sideDishBtn = document.getElementById('side');
+var homeHolder = document.getElementById('home');
+var homeBtn = document.getElementById('homeBtn');
 
     //page areas
 var cookpot = document.getElementById('cookpot');
 var leftSide = document.getElementById('left');
+var mainArea = document.getElementById('main');
 var rightSide = document.getElementById('right');
 
 // EVENT LISTENERS
 window.addEventListener('load', changeCookpotVisibility)
 leftSide.addEventListener('change', disableUnchecked);
 letsCookBtn.addEventListener('click', generateRandomRecipe);
-rightSide.addEventListener('click', saveOrClear);
+rightSide.addEventListener('click', clearRecipe);
 
 // Global VAR
 var newRecipe;
@@ -38,9 +42,6 @@ function generateRandomRecipe() {
     singleItemInnerHTML();
   }
   disableLetsCookBtn();
-  console.log('mains', mains.length);
-  console.log('sides', sides.length);
-  console.log('desserts', desserts.length);
 }
 
 function entireMealInnerHTML() {
@@ -49,17 +50,16 @@ function entireMealInnerHTML() {
   var dessert = desserts[getRandomIndex(desserts)];
   newRecipe = new Recipe({main: main, side: side, dessert: dessert});
   rightSide.innerHTML =
-    `
+  `
     <div>
       <br><br><p class="recipe-head" id="recipe">You should make:</p>
       <p>${main} with a side</p>
       <p>of ${side} and</p>
       <p>${dessert} for dessert!</p>
-      <br><br><button type="button" name="favorite" class="fav grow" id="favorite">FAVORITE</button>
-      <br><br><button type="button" name="clear" class="clear grow" id="clear">CLEAR</button>
+      <br><br><span><button type="button" name="clear" class="clear grow" id="clear">CLEAR</button></span>
     </div>
-    `
-}
+  `
+} 
 
 function singleItemInnerHTML() {
   var item;
@@ -87,15 +87,11 @@ function changeCookpotVisibility() {
     `
 }
 
-function saveOrClear() {
-  if (event.target.id === 'clear') {
-    rightSide.innerHTML = '';
-    enableLetsCookBtn();
-    changeRadioStatus();
-    changeCookpotVisibility();
-  } else {
-    saveEntireMeal(newRecipe);
-  }
+function clearRecipe() {
+  rightSide.innerHTML = '';
+  enableLetsCookBtn();
+  changeRadioStatus();
+  changeCookpotVisibility();
  }
 
 function saveEntireMeal(newRecipe) {
