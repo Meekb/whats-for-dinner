@@ -1,6 +1,8 @@
 ## Title: What's for Dinner (in the Colonies)?
 
 A [Front-End Project] by: [Beth Meeker] (https://github.com/Meekb)
+Project forked from [Turing School of Software & Design, GitHub](https://frontend.turing.io/projects/module-1/dinner.html)
+
 
 ## Index
 
@@ -10,12 +12,14 @@ A [Front-End Project] by: [Beth Meeker] (https://github.com/Meekb)
 4. [Technologies](#technologies)
 5. [Resources](#resources)
 
+
 ## Overview
 
 What's for dinner? This has always been the ultimate question. This web application
 will help you determine an answer by providing random options of Colonial fare, and
 old American standards. So toss out that old recipe book and click "Let's Cook!" to
 see what unique culinary masterpiece you will tackle next.
+
 
 ## Functionality
 
@@ -30,11 +34,8 @@ see what unique culinary masterpiece you will tackle next.
   will be displayed in place of the Cookpot icon on the right
   - When a recipe is displayed, the "Let's Cook!" button is deactivated, and indicated
   as such with a limited opacity
-  - When a recipe is displayed, additional buttons will be displayed underneath
+  - When a recipe is displayed, an additional button will be displayed
   - The "Clear" button will reactivate the "Let's Cook!" and radio buttons on the left
-  - The "Favorite" button adds the currently displayed recipe to the favorites array
-  - The "View Favorites" button displays all the saved recipe items at the bottom of
-  the page
 
 
 ## Setup / Deployed Page

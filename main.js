@@ -18,16 +18,12 @@ var cookpot = document.getElementById('cookpot');
 var leftSide = document.getElementById('left');
 var mainArea = document.getElementById('main');
 var rightSide = document.getElementById('right');
-var savedArea = document.getElementById('saved');
-var savedCard = document.getElementById('card');
-var savedNav = document.getElementById('savedNav');
-var cardTitle = document.getElementById('title');
 
 // EVENT LISTENERS
 window.addEventListener('load', changeCookpotVisibility)
 leftSide.addEventListener('change', disableUnchecked);
 letsCookBtn.addEventListener('click', generateRandomRecipe);
-rightSide.addEventListener('click', saveClearOrView);
+rightSide.addEventListener('click', clearRecipe);
 
 // Global VAR
 var newRecipe;
@@ -54,17 +50,16 @@ function entireMealInnerHTML() {
   var dessert = desserts[getRandomIndex(desserts)];
   newRecipe = new Recipe({main: main, side: side, dessert: dessert});
   rightSide.innerHTML =
-    `
+  `
     <div>
       <br><br><p class="recipe-head" id="recipe">You should make:</p>
       <p>${main} with a side</p>
       <p>of ${side} and</p>
       <p>${dessert} for dessert!</p>
-      <br><button type="button" name="favorite" class="fav grow" id="favorite">FAVORITE</button>
-      <br><br><span><button class="view-fav-button grow" id="viewFavs">VIEW FAVS</button></span><span><button type="button" name="clear" class="clear grow" id="clear">CLEAR</button></span>
+      <br><br><span><button type="button" name="clear" class="clear grow" id="clear">CLEAR</button></span>
     </div>
-    `
-}
+  `
+} 
 
 function singleItemInnerHTML() {
   var item;
@@ -92,45 +87,11 @@ function changeCookpotVisibility() {
     `
 }
 
-function saveClearOrView() {
-  if (event.target.id === 'favorite') {
-    console.log('favorite button clicked')
-    saveEntireMeal(newRecipe);
-    console.log(favorites);
-  } else if (event.target.id === 'viewFavs') {
-    console.log('view favorites button clicked');
-    // revealSavedArea();
-    displaySavedRecipes();
-      // invoke populate saved recipe cards function
-  } else {
-    console.log('clear button clicked');
-    rightSide.innerHTML = '';
-    enableLetsCookBtn();
-    changeRadioStatus();
-    changeCookpotVisibility();
-  }
- }
-
- function displaySavedRecipes() {
-   savedNav.classList.remove('hidden');
-   savedArea.classList.remove('hidden');
-   var recipeList = '';
-   savedArea.innerHTML = '';
-   for (var i = 0; i < favorites.length; i++) {
-     recipeList +=
-      `
-      <article class="saved hidden" id="saved">
-        <div class="recipe-card" id="card">
-          <p class="saved-card" id="title">SAVED RECIPE</p>
-          <p>${favorites[i].main}</p>
-          <p>with a side</p>
-          <p>of ${favorites[i].side} and</p>
-          <p>${favorites[i].dessert} for dessert!</p>
-        </div>
-      </article>
-      `
-   }
-   savedArea.innerHTML = recipeList;
+function clearRecipe() {
+  rightSide.innerHTML = '';
+  enableLetsCookBtn();
+  changeRadioStatus();
+  changeCookpotVisibility();
  }
 
 function saveEntireMeal(newRecipe) {
