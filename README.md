@@ -1,4 +1,4 @@
-## Title: What's For Dinner?
+## Title: What's on the Gilded Menu?
 
 A [Front-End Project] by: [Beth Meeker] (https://github.com/Meekb)
 Project forked from [Turing School of Software & Design, GitHub](https://frontend.turing.io/projects/module-1/dinner.html)
@@ -45,7 +45,7 @@ It's time to transport your family to a Gilded Age high society ball! This web a
   - Clone this repository to your local machine
   - `cd` into the project
   - Type `open index.html` to view the project in your browser
-  - OR you can visit my deployed project: [What's for Dinner (in the Colonies)?](https://meekb.github.io/whats-for-dinner/)
+  - OR you can visit my deployed project: [What's on the Gilded Menu?](https://meekb.github.io/whats-for-dinner/)
 
 
 ## Technologies
