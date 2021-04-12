@@ -59,7 +59,7 @@ function entireMealInnerHTML() {
       <br><br><span><button type="button" name="clear" class="clear grow" id="clear">CLEAR</button></span>
     </div>
   `
-} 
+}
 
 function singleItemInnerHTML() {
   var item;
